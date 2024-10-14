@@ -18,9 +18,17 @@ func main() {
 
 	todos := []Todo{}
 
-	// Define a route for the GET method on the root path '/'
+	app.Get("/", func(c fiber.Ctx) error {
+		return c.SendString("Hello world, I am Marcus!")
+	})
+
+	app.Get("/health", func(c fiber.Ctx) error {
+		return c.SendString("App is running, dont worry")
+	})
+
 	app.Get("/api/todos", func(c fiber.Ctx) error {
 		// Send a string response to the client
+		fmt.Println("Hello world")
 		return c.Status(200).JSON(fiber.Map{"msg": "hello world"})
 	})
 
@@ -51,9 +59,11 @@ func main() {
 			}
 		}
 
-		return c.Status(404).JSON(fiber.Map{"error": "Todod not found"})
+		return c.Status(404).JSON(fiber.Map{"error": "Todo not found"})
 	})
 
+	//Delete todo
+
 	// Start the server on port 3000
-	log.Fatal(app.Listen("127.0.0.1:3000"))
+	log.Fatal(app.Listen("0.0.0.0:8080"))
 }

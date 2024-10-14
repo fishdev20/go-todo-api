@@ -19,7 +19,7 @@ func main() {
 	todos := []Todo{}
 
 	app.Get("/", func(c fiber.Ctx) error {
-		return c.SendString("Hello world, I am Marcus!")
+		return c.SendString("Hello world, I am Marcus")
 	})
 
 	app.Get("/health", func(c fiber.Ctx) error {
